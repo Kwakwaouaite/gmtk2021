@@ -5,12 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float translationSpeed = 10;
-    public float rotationSpeed = 10;
-    private Vector2 moveInput;
-    private float altitudeMoveInput;
-    private Vector2 lookInput;
-    private Rigidbody rb;
+    [SerializeField]
+    float m_TranslationSpeed = 10;
+    [SerializeField]
+    float m_RotationSpeed = 10;
+    Vector2 moveInput;
+    float altitudeMoveInput;
+    Vector2 lookInput;
+    Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
@@ -22,15 +24,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float xTranslation = moveInput.x * translationSpeed;
-        float yTranslation = altitudeMoveInput * translationSpeed;
-        float zTranslation = moveInput.y * translationSpeed;
+        float xTranslation = moveInput.x * m_TranslationSpeed;
+        float yTranslation = altitudeMoveInput * m_TranslationSpeed;
+        float zTranslation = moveInput.y * m_TranslationSpeed;
         Vector3 vTranslation = new Vector3(xTranslation, yTranslation, zTranslation);
         Quaternion horizontalRotation = Quaternion.AngleAxis(transform.rotation.eulerAngles.y, new Vector3(0, 1, 0));
         rb.velocity = horizontalRotation * vTranslation;
 
-        float xRotation = -lookInput.y * Time.deltaTime * rotationSpeed; // Up/down
-        float yRotation = lookInput.x * Time.deltaTime * rotationSpeed; //right/left
+        float xRotation = -lookInput.y * Time.deltaTime * m_RotationSpeed; // Up/down
+        float yRotation = lookInput.x * Time.deltaTime * m_RotationSpeed; //right/left
         transform.Rotate(new Vector3(1, 0, 0), xRotation, Space.Self);
         transform.Rotate(new Vector3(0, 1, 0), yRotation, Space.World);
     }
