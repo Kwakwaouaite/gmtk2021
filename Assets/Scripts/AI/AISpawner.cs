@@ -46,7 +46,12 @@ public class AISpawner : MonoBehaviour
 
         m_InactiveAIs.Add(aIMove.gameObject);
 
-        SelectionManager.Instance.RemoveTarget(aIMove.GetComponent<PropsHolder>());
+        SelectionManager selectionManager = SelectionManager.Instance;
+
+        if (selectionManager)
+        {
+            selectionManager.RemoveTarget(aIMove.GetComponent<PropsHolder>());
+        }
     }
 
     private void Awake()
