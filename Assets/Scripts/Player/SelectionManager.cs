@@ -38,7 +38,7 @@ public class SelectionManager : MonoBehaviour
         lineRenderer.SetPosition(0, transform.position);
         for(int i = 0; i < m_SelectedTargets.Count; i++)
         {
-            lineRenderer.SetPosition(i + 1, m_SelectedTargets[i].transform.position);
+            lineRenderer.SetPosition(i + 1, m_SelectedTargets[i].transform.position + Vector3.up);
         }
     }
 
@@ -48,7 +48,14 @@ public class SelectionManager : MonoBehaviour
         {
             m_SelectedTargets.Add(newTarget);
             lineRenderer.positionCount++;
-            lineRenderer.SetPosition(lineRenderer.positionCount - 1, newTarget.transform.position);
+        }
+    }
+
+    public void RemoveTarget(PropsHolder newTarget)
+    {
+        if (m_SelectedTargets.Remove(newTarget))
+        {
+            lineRenderer.positionCount--;
         }
     }
 
@@ -72,7 +79,11 @@ public class SelectionManager : MonoBehaviour
             }
             else
             {
-                //Win
+                ScoreManager.Instance.GainPoints(m_SelectedTargets.Count, commonProps.Count);
+            }
+            for(int i = 0; i < m_SelectedTargets.Count;) // No need to advance in the list cause we remove them in the function
+            {
+                AISpawner.GetInstance().OnPawnReachedDestination(m_SelectedTargets[i].GetComponent<AIMove>());
             }
             RemoveSelection();
         }
