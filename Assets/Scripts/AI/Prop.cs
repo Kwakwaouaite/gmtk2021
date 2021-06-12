@@ -17,7 +17,7 @@ public class Prop : MonoBehaviour
             Debug.LogError("A prop have an invalid tag");
         }
 
-        PropManager propManager = transform.GetComponentInParent<PropManager>();
+        PropsHolder propManager = transform.GetComponentInParent<PropsHolder>();
 
         propManager.RegisterProp(this);
     }

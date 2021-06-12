@@ -95,14 +95,11 @@ public class AISpawner : MonoBehaviour
 
     private void InitializeProp(GameObject newAgent)
     {
-        PropManager propManager = newAgent.GetComponent<PropManager>();
+        PropsHolder propManager = newAgent.GetComponent<PropsHolder>();
 
-        List<EProp> debugListProp = new List<EProp>();
+        List<EProp> propsToUse = PropsManager.GetInstance().GenerateRandomProps();
 
-        debugListProp.Add(EProp.Aureole);
-        debugListProp.Add(EProp.SunGlasses);
-
-        propManager.ResetAndActivateProps(debugListProp);
+        propManager.ResetAndActivateProps(propsToUse);
     }
 
     private void InitializeNavmeshAgent(GameObject newAgent)
@@ -118,7 +115,5 @@ public class AISpawner : MonoBehaviour
         AIMove moverNewAgent = newAgent.GetComponent<AIMove>();
 
         moverNewAgent.Init(spawnTransform, destinationTransform);
-
-
     }
 }
