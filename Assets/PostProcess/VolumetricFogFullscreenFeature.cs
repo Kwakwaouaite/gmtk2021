@@ -16,10 +16,12 @@ namespace UnityEngine.Rendering.Universal
 	    private Material m_materialBlurr;
 	    private RenderTargetIdentifier m_source;
 	    private RenderTargetHandle m_tempTexture;
+	    private RenderTexture m_rtVolFog;
 	    private int m_passIndex;
 
-	    public RenderPass(Material _materialBlurr, Material _materialApplyFog, int _passIndex) : base()
+	    public RenderPass(RenderTexture _rtVolFog, Material _materialBlurr, Material _materialApplyFog, int _passIndex) : base()
 	    {
+		this.m_rtVolFog = _rtVolFog;
 		this.m_materialBlurr = _materialBlurr;
 		this.m_materialApplyFog = _materialApplyFog;
 		this.m_passIndex = _passIndex;
@@ -39,8 +41,8 @@ namespace UnityEngine.Rendering.Universal
 		cameraTextureDesc.depthBufferBits = 0;
 		cmd.GetTemporaryRT(m_tempTexture.id, cameraTextureDesc, FilterMode.Bilinear);
 
-		Blit(cmd, m_source, m_tempTexture.Identifier(), m_materialBlurr, m_passIndex);
-		Blit(cmd, m_tempTexture.Identifier(), m_source, m_materialBlurr, m_passIndex);
+		Blit(cmd, m_rtVolFog, m_tempTexture.Identifier(), m_materialBlurr, m_passIndex);
+		Blit(cmd, m_tempTexture.Identifier(), m_rtVolFog, m_materialBlurr, m_passIndex);
 		Blit(cmd, m_source, m_tempTexture.Identifier());
 		Blit(cmd, m_tempTexture.Identifier(), m_source, m_materialApplyFog);
 
@@ -57,6 +59,7 @@ namespace UnityEngine.Rendering.Universal
 	[System.Serializable]
 	public class Settings
 	{
+	    public RenderTexture rtVolFog;
 	    public Material materialBlurr;
 	    public Material materialApplyFog;
 	    public int materialPassIndex = -1; // all passes
@@ -78,7 +81,7 @@ namespace UnityEngine.Rendering.Universal
 
 	public override void Create()
 	{
-	    this.m_renderPass = new RenderPass(settings.materialBlurr, settings.materialApplyFog, settings.materialPassIndex);
+	    this.m_renderPass = new RenderPass(settings.rtVolFog, settings.materialBlurr, settings.materialApplyFog, settings.materialPassIndex);
 
 	    m_renderPass.renderPassEvent = settings.renderEvent;
 	}

@@ -18,7 +18,8 @@ float4 clouds(UnityTexture3D _volumeTex, UnitySamplerState _volumeSampler, float
 	float4 den = SAMPLE_TEXTURE3D(_volumeTex, _volumeSampler, p+_time).rgba;
 	float volume = SAMPLE_TEXTURE3D(_volumeTex, _volumeSampler, _tile.x*p + _time).g;
 	den.r *= volume* volume;
-	den.r *= exp(-0.1*dist);
+	den.r *= max(0., .1*(10.-length(p)));
+	//den.r *= exp(-0.1*dist);
 	if (den.r > 0.01)
 	{
 	    float d = 0.5;

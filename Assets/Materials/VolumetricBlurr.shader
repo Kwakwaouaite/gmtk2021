@@ -55,12 +55,12 @@ Shader "Custom/VolumetricFogBlurr"
 		float i = _offset;
 
 		fixed4 col;
-		col.rgb = tex2D(_MainTex, input.uv).rgb;
-		col.rgb += tex2D(_MainTex, input.uv + float2(i, i) * res).rgb;
-		col.rgb += tex2D(_MainTex, input.uv + float2(i, -i) * res).rgb;
-		col.rgb += tex2D(_MainTex, input.uv + float2(-i, i) * res).rgb;
-		col.rgb += tex2D(_MainTex, input.uv + float2(-i, -i) * res).rgb;
-		col.rgb /= 5.0f;
+		col.rgba = tex2D(_MainTex, input.uv).rgba;
+		col.rgba += tex2D(_MainTex, input.uv + float2(i, i) * res).rgba;
+		col.rgba += tex2D(_MainTex, input.uv + float2(i, -i) * res).rgba;
+		col.rgba += tex2D(_MainTex, input.uv + float2(-i, i) * res).rgba;
+		col.rgba += tex2D(_MainTex, input.uv + float2(-i, -i) * res).rgba;
+		col.rgba /= 5.0f;
 
 		return col;
 	    }

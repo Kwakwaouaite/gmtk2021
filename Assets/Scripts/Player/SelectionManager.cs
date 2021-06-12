@@ -35,10 +35,9 @@ public class SelectionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lineRenderer.SetPosition(0, transform.position);
         for(int i = 0; i < m_SelectedTargets.Count; i++)
         {
-            lineRenderer.SetPosition(i + 1, m_SelectedTargets[i].transform.position + Vector3.up);
+            lineRenderer.SetPosition(i, m_SelectedTargets[i].transform.position + Vector3.up);
         }
     }
 
@@ -91,7 +90,7 @@ public class SelectionManager : MonoBehaviour
 
     private void RemoveSelection()
     {
-        lineRenderer.positionCount = 1;
+        lineRenderer.positionCount = 0;
         m_SelectedTargets.Clear();
     }
 }
