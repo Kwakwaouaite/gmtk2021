@@ -8,24 +8,25 @@ public class Bow : MonoBehaviour
     public Rigidbody playerRb;
     public GameObject arrowPrefab;
     public Transform arrowSpawn;
-    public float shootVelocity = 20;
+    [SerializeField]
+    float m_ShootVelocity = 20;
 
-    private bool shootInput;
+    bool m_ShootInput;
 
     // Update is called once per frame
     void Update()
     {
-        if(shootInput)
+        if(m_ShootInput)
         {
             GameObject newArrow = Instantiate(arrowPrefab, arrowSpawn.position, Quaternion.identity);
             Rigidbody newArrowRb = newArrow.GetComponent<Rigidbody>();
-            newArrowRb.velocity = cam.transform.forward * shootVelocity;
-            shootInput = false;
+            newArrowRb.velocity = cam.transform.forward * m_ShootVelocity;
+            m_ShootInput = false;
         }
     }
 
     public void OnFire()
     {
-        shootInput = true;
+        m_ShootInput = true;
     }
 }
