@@ -13,6 +13,7 @@ public class PropsManager : MonoBehaviour
     }
 
     public List<PropGroup> m_PropGroups;
+    public List<Color> m_PropColors;
 
     private static PropsManager s_Instance;
     static public PropsManager GetInstance()
@@ -40,5 +41,10 @@ public class PropsManager : MonoBehaviour
         }
 
         return randomProps;
+    }
+
+    public Color GetRandomColor()
+    {
+        return m_PropColors[Random.Range(0, m_PropColors.Count)];
     }
 }

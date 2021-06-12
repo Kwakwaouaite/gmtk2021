@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Prop : MonoBehaviour
 {
+    public Material propMaterial;
+
     [SerializeField]
     EProp m_Type;
 
@@ -20,6 +22,21 @@ public class Prop : MonoBehaviour
         PropsHolder propManager = transform.GetComponentInParent<PropsHolder>();
 
         propManager.RegisterProp(this);
+
+        Renderer renderer = GetComponent<Renderer>();
+        if(renderer)
+        {
+            renderer.material = propMaterial;
+        }
+    }
+
+    public void Init()
+    {
+        Renderer renderer = GetComponent<Renderer>();
+        if(renderer)
+        {
+            renderer.material.color = PropsManager.GetInstance().GetRandomColor();
+        }
     }
 
     // Update is called once per frame

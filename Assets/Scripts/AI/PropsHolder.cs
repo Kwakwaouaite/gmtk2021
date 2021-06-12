@@ -43,13 +43,14 @@ public class PropsHolder : MonoBehaviour
     {
         if (m_PropsActivationDirtyFlag == true)
         {
-            m_PropsActivationDirtyFlag = true;
+            m_PropsActivationDirtyFlag = false;
 
             foreach (Prop prop in m_Props)
             {
                 if (m_PropsToActivate.Contains(prop.Type))
                 {
                     prop.gameObject.SetActive(true);
+                    prop.Init();
                 }
                 else
                 {
