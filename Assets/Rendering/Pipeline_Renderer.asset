@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
+    rtVolFog: {fileID: 8400000, guid: faf0fb0f871342f43ae76f96beda09ce, type: 2}
     materialBlurr: {fileID: 2100000, guid: 3f7b084d52b4c98448701caca5a2b18c, type: 2}
     materialApplyFog: {fileID: 2100000, guid: 83d62af52964fca4397783630af67d56, type: 2}
     materialPassIndex: 0
@@ -75,6 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
+    rtVolFog: {fileID: 0}
     materialBlurr: {fileID: 0}
     materialApplyFog: {fileID: 0}
     materialPassIndex: 0
