@@ -10,41 +10,45 @@ public class AIMove : MonoBehaviour
     [SerializeField]
     float m_CloseToEpsilon = 1.0f;
 
+    NavMeshAgent m_Agent;
+
     void Start()
     {
-        NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        //agent.
+        m_Agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
         if (m_Destination)
         {
-            NavMeshAgent agent = GetComponent<NavMeshAgent>();
-            agent.destination = m_Destination.position;
-
-
             if (IsCloseTo(m_Destination.position))
             {
-                Destroy(this.gameObject);
+                AISpawner.GetInstance().OnPawnReachedDestination(this);
+                //Destroy(this.gameObject);
             }
         }
 
     }
 
+    public void Init(Transform startingTransform, Transform destTransform)
+    {
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        agent.Warp(startingTransform.position);
 
-    public void SetDestination(Transform transform)
+        SetDestination(destTransform);
+    }
+
+    private void SetDestination(Transform transform)
     {
         m_Destination = transform;
 
-        //NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        //agent.destination = m_Destination.position;
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        agent.destination = m_Destination.position;
     }
 
     private bool IsCloseTo(Vector3 position)
     {
         Vector3 shift = this.transform.position - position;
-        Debug.Log(shift.magnitude);
         return shift.magnitude < m_CloseToEpsilon;
     }
 }

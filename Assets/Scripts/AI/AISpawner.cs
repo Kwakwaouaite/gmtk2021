@@ -26,6 +26,35 @@ public class AISpawner : MonoBehaviour
     [SerializeField]
     SpawnPointGroup[] m_SpawnPointGroups;
 
+    List<GameObject> m_ActiceAIs;
+    List<GameObject> m_InactiveAIs;
+
+    private static AISpawner s_Instance;
+    static public AISpawner GetInstance()
+    {
+        if (s_Instance == null)
+        {
+            Debug.LogError("No AISpawner found in the level");
+        }
+
+        return s_Instance;
+    }
+
+    public void OnPawnReachedDestination(AIMove aIMove)
+    {
+        aIMove.gameObject.SetActive(false);
+
+        m_InactiveAIs.Add(aIMove.gameObject);
+    }
+
+    private void Awake()
+    {
+        s_Instance = this;
+
+        m_ActiceAIs = new List<GameObject>();
+        m_InactiveAIs = new List<GameObject>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,19 +74,37 @@ public class AISpawner : MonoBehaviour
 
     private void SpawnAI()
     {
+        GameObject newAgent;
+        
+        if (m_InactiveAIs.Count > 0)
+        {
+            newAgent = m_InactiveAIs[0];
+            m_InactiveAIs.RemoveAt(0);
+
+            newAgent.SetActive(true);
+        }
+        else
+        {
+            newAgent = Instantiate(m_AIPrefab, this.transform);
+        }
+
+        InitializeAI(newAgent);
+    }
+
+    private void InitializeAI(GameObject newAgent)
+    {
         int spawnGroupIndex = UnityEngine.Random.Range(0, 2);
 
         SpawnPointGroup startingGroup = m_SpawnPointGroups[spawnGroupIndex];
         SpawnPointGroup destinationGroup = m_SpawnPointGroups[1 - spawnGroupIndex];
 
-
         Transform spawnTransform = startingGroup.m_SpawnPoints[UnityEngine.Random.Range(0, startingGroup.m_SpawnPoints.Length)];
         Transform destinationTransform = destinationGroup.m_SpawnPoints[UnityEngine.Random.Range(0, destinationGroup.m_SpawnPoints.Length)];
 
-        GameObject newAgent = Instantiate(m_AIPrefab, spawnTransform.position, spawnTransform.rotation, this.transform);
-
         AIMove moverNewAgent = newAgent.GetComponent<AIMove>();
 
-        moverNewAgent.SetDestination(destinationTransform);
+        moverNewAgent.Init(spawnTransform, destinationTransform);
+
+
     }
 }
