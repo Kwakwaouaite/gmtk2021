@@ -6,10 +6,13 @@ public class Arrow : MonoBehaviour
 {
     [SerializeField]
     float m_TimeForDisintegrate = 1;
+    [SerializeField]
+    float m_MaxDistance = 300;
 
     MeshRenderer mesh;
     Rigidbody rb;
     bool m_HitSomething = false;
+    Quaternion m_previousRot;
     
     // Start is called before the first frame update
     void Start()
@@ -19,11 +22,20 @@ public class Arrow : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(rb.velocity);
     }
 
+    void Update()
+    {
+        if (transform.position.magnitude > m_MaxDistance)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
         if(!m_HitSomething)
         {
+            m_previousRot = transform.rotation;
             transform.rotation = Quaternion.LookRotation(rb.velocity);
         }
     }
@@ -33,9 +45,10 @@ public class Arrow : MonoBehaviour
         if(!m_HitSomething)
         {
             m_HitSomething = true;
+            transform.rotation = m_previousRot; //To cancel the movement caused by the collision
             rb.constraints = RigidbodyConstraints.FreezeAll;
 
-            AIMove target = collision.gameObject.GetComponent<AIMove>();
+            PropsHolder target = collision.gameObject.GetComponent<PropsHolder>();
             if(target)
             {
                 SelectionManager.Instance.AddTarget(target);

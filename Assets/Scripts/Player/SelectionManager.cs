@@ -22,36 +22,65 @@ public class SelectionManager : MonoBehaviour
         s_instance = this;
     }
 
-    private List<AIMove> m_SelectedTargets;
+    private List<PropsHolder> m_SelectedTargets;
+    private LineRenderer lineRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_SelectedTargets = new List<AIMove>();
+        m_SelectedTargets = new List<PropsHolder>();
+        lineRenderer = GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        lineRenderer.SetPosition(0, transform.position);
+        for(int i = 0; i < m_SelectedTargets.Count; i++)
+        {
+            lineRenderer.SetPosition(i + 1, m_SelectedTargets[i].transform.position);
+        }
     }
 
-    public void AddTarget(AIMove newTarget)
+    public void AddTarget(PropsHolder newTarget)
     {
         if(!m_SelectedTargets.Contains(newTarget))
         {
             m_SelectedTargets.Add(newTarget);
+            lineRenderer.positionCount++;
+            lineRenderer.SetPosition(lineRenderer.positionCount - 1, newTarget.transform.position);
         }
     }
 
     public void OnCancelSelection()
     {
-        m_SelectedTargets.Clear();
+        RemoveSelection();
     }
 
     public void OnSubmitSelection()
     {
-        //TODO check result
+        if(m_SelectedTargets.Count >= 2)
+        {
+            List<EProp> commonProps = m_SelectedTargets[0].PropsToActivate;
+            for (int i = 1; i < m_SelectedTargets.Count; i++)
+            {
+                commonProps = commonProps.FindAll(delegate(EProp eProp) { return m_SelectedTargets[i].PropsToActivate.Contains(eProp); });
+            }
+            if(commonProps.Count == 0)
+            {
+                //Lose
+            }
+            else
+            {
+                //Win
+            }
+            RemoveSelection();
+        }
+    }
+
+    private void RemoveSelection()
+    {
+        lineRenderer.positionCount = 1;
         m_SelectedTargets.Clear();
     }
 }
