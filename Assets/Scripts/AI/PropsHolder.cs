@@ -8,6 +8,11 @@ public class PropsHolder : MonoBehaviour
 
     List<EProp> m_PropsToActivate;
 
+    public List<EProp> PropsToActivate
+    {
+        get { return m_PropsToActivate; }
+    }
+
     bool m_PropsActivationDirtyFlag;
 
     private void Awake()
@@ -15,6 +20,10 @@ public class PropsHolder : MonoBehaviour
         if (m_Props == null)
         {
             m_Props = new List<Prop>();
+        }
+        if (m_PropsToActivate == null)
+        {
+            m_PropsToActivate = new List<EProp>();
         }
     }
 
