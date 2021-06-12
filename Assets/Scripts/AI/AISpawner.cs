@@ -88,10 +88,24 @@ public class AISpawner : MonoBehaviour
             newAgent = Instantiate(m_AIPrefab, this.transform);
         }
 
-        InitializeAI(newAgent);
+        InitializeNavmeshAgent(newAgent);
+
+        InitializeProp(newAgent);
     }
 
-    private void InitializeAI(GameObject newAgent)
+    private void InitializeProp(GameObject newAgent)
+    {
+        PropManager propManager = newAgent.GetComponent<PropManager>();
+
+        List<EProp> debugListProp = new List<EProp>();
+
+        debugListProp.Add(EProp.Aureole);
+        debugListProp.Add(EProp.SunGlasses);
+
+        propManager.ResetAndActivateProps(debugListProp);
+    }
+
+    private void InitializeNavmeshAgent(GameObject newAgent)
     {
         int spawnGroupIndex = UnityEngine.Random.Range(0, 2);
 
