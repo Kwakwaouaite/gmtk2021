@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PropManager : MonoBehaviour
+public class PropsHolder : MonoBehaviour
 {
     List<Prop> m_Props;
 
