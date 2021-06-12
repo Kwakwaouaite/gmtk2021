@@ -48,6 +48,9 @@ public class SelectionManager : MonoBehaviour
             m_SelectedTargets.Add(newTarget);
             lineRenderer.positionCount++;
         }
+
+        newTarget.GetComponent<AIMove>().StopMovement();
+
     }
 
     public void RemoveTarget(PropsHolder newTarget)
@@ -56,6 +59,13 @@ public class SelectionManager : MonoBehaviour
         {
             lineRenderer.positionCount--;
         }
+
+        OnTargerRemoved(newTarget);
+    }
+
+    private void OnTargerRemoved(PropsHolder target)
+    {
+        target.GetComponent<AIMove>().StartMovement();
     }
 
     public void OnCancelSelection()
@@ -90,7 +100,13 @@ public class SelectionManager : MonoBehaviour
 
     private void RemoveSelection()
     {
+        foreach (PropsHolder propsHolder in m_SelectedTargets)
+        {
+            OnTargerRemoved(propsHolder);
+        }
+
         lineRenderer.positionCount = 0;
+
         m_SelectedTargets.Clear();
     }
 }

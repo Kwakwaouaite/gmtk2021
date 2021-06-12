@@ -12,6 +12,21 @@ public class AIMove : MonoBehaviour
 
     NavMeshAgent m_Agent;
 
+    public void StopMovement()
+    {
+        m_Agent.isStopped = true;
+    }
+
+    public void StartMovement()
+    {
+        if (m_Agent.isOnNavMesh)
+        {
+            m_Agent.isStopped = false;
+
+            SetDestination(m_Destination);
+        }
+    }
+
     void Start()
     {
         m_Agent = GetComponent<NavMeshAgent>();
@@ -24,7 +39,6 @@ public class AIMove : MonoBehaviour
             if (IsCloseTo(m_Destination.position))
             {
                 AISpawner.GetInstance().OnPawnReachedDestination(this);
-                //Destroy(this.gameObject);
             }
         }
 
@@ -33,7 +47,7 @@ public class AIMove : MonoBehaviour
     public void Init(Transform startingTransform, Transform destTransform)
     {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        agent.Warp(startingTransform.position);
+        agent.Warp (startingTransform.position);
 
         SetDestination(destTransform);
     }
