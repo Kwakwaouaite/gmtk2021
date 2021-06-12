@@ -79,7 +79,11 @@ public class SelectionManager : MonoBehaviour
             }
             else
             {
-                //Win
+                ScoreManager.Instance.GainPoints(m_SelectedTargets.Count, commonProps.Count);
+            }
+            for(int i = 0; i < m_SelectedTargets.Count;) // No need to advance in the list cause we remove them in the function
+            {
+                AISpawner.GetInstance().OnPawnReachedDestination(m_SelectedTargets[i].GetComponent<AIMove>());
             }
             RemoveSelection();
         }
