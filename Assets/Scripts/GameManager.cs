@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
     public Text m_endScoreText;
     public Text m_debugText;
 
+    public PlayerController player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,15 +62,18 @@ public class GameManager : MonoBehaviour
 
     public void GotoMenu()
     {
-	    m_status = Status.MENU;
+        Time.timeScale = 1;
+        m_status = Status.MENU;
         DeactivateGame();
         DisableAllCanvas();
         m_menuCanvas.enabled = true;
+        player.ResetPosition();
     }
     public void GotoGame()
     {
         ActivateGame();
         EndGameManager.Instance.InitGame();
+        player.ResetPosition();
     }
     public void GotoScores()	{ m_status = Status.SCORES; }
     public void GotoRules()	{ m_status = Status.RULES; }
@@ -104,13 +109,13 @@ public class GameManager : MonoBehaviour
 
     public void Unpause()
     {
-        Time.timeScale = 1;
         m_status = Status.GAME;
         ActivateGame();
     }
 
     private void ActivateGame()
     {
+        Time.timeScale = 1;
         m_status = Status.GAME;
         DisableAllCanvas();
         m_gameCanvas.enabled = true;

@@ -112,11 +112,11 @@ RectTransform:
   m_Father: {fileID: 5216836497137410782}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5, y: -5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -5, y: -5}
   m_SizeDelta: {x: 280, y: 70}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &2422454561951655312
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -583,8 +583,8 @@ MonoBehaviour:
   m_DecreasingLoveGaugeStartingSpeed: 0.5
   m_DecreasingLoveGaugeEvolutingSpeed: 0.05
   m_GainLoveGaugePerPoint: 5
-  m_MaxTime: 100
-  m_nbrBullets: 50
+  m_MaxTime: 0
+  m_nbrBullets: 0
   timerText: {fileID: 903776585251718483}
   loveAmountFill: {fileID: 6409264845298684263}
   nbBulletsText: {fileID: 8581797450269410180}
@@ -868,8 +868,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: -50}
-  m_SizeDelta: {x: 12, y: 300}
+  m_AnchoredPosition: {x: 50, y: -30}
+  m_SizeDelta: {x: 12, y: 330}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &4433294457853312246
 GameObject:
@@ -888,7 +888,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &454558480484810315
 RectTransform:
   m_ObjectHideFlags: 0
@@ -964,7 +964,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8118580660302176561
 RectTransform:
   m_ObjectHideFlags: 0
