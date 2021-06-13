@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     public Canvas m_gameCanvas;
     public Canvas m_menuCanvas;
     public Canvas m_endMenuCanvas;
+    public Canvas m_rulesCanvas;
 
     public Text m_endScoreText;
     public Text m_debugText;
@@ -76,7 +77,14 @@ public class GameManager : MonoBehaviour
         player.ResetPosition();
     }
     public void GotoScores()	{ m_status = Status.SCORES; }
-    public void GotoRules()	{ m_status = Status.RULES; }
+    
+    public void GotoRules()
+    { 
+        m_status = Status.RULES;
+        DisableAllCanvas();
+        m_rulesCanvas.enabled = true;
+    }
+
     public void GotoGameOver()
     {
         int score = ScoreManager.Instance.GetScore();
@@ -135,6 +143,7 @@ public class GameManager : MonoBehaviour
         m_pauseCanvas.enabled = false;
         m_endMenuCanvas.enabled = false;
         m_menuCanvas.enabled = false;
+        m_rulesCanvas.enabled = false;
     }
 
     public string GetStatusString()

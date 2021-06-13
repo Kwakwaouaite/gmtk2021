@@ -351,6 +351,17 @@
                 },
                 {
                     "name": "",
+                    "id": "32c6c3e7-1baa-4785-a40a-0c5ef6739dcc",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CancelSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ab06ace3-b073-4306-9531-7ecc81624374",
                     "path": "<Keyboard>/enter",
                     "interactions": "",
