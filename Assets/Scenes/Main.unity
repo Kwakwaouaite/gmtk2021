@@ -474,12 +474,12 @@ GameObject:
   - component: {fileID: 1289703787}
   - component: {fileID: 1289703786}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: CameraScreenCaptureSceneFromTOp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1289703785
 Transform:
   m_ObjectHideFlags: 0
