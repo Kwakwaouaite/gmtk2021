@@ -98,6 +98,10 @@ public class Merger : MonoBehaviour
 
                 SelectionManager.Instance.PlaySound(m_IsSuccess);
             }
+            else
+            {
+                AISpawner.GetInstance().DeactivatePawn(ai);
+            }
         }
 
         if (m_AIReadyToMerge.Count == m_AIs.Count)
