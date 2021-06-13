@@ -302,6 +302,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cbf5e7a4908d81c479d83f8813b40905, type: 3}
   - {fileID: 8300000, guid: 2c47791fb822089489581f052757722f, type: 3}
   - {fileID: 8300000, guid: 060030f932f78104390da2129b35fc1c, type: 3}
+  - {fileID: 8300000, guid: 9ad8588464c239c4ba0212323a190e89, type: 3}
+  - {fileID: 8300000, guid: acbe5db8535eb20408d5479862f5f559, type: 3}
+  - {fileID: 8300000, guid: c2a5a48c052b11847b4617f9bb69e432, type: 3}
+  - {fileID: 8300000, guid: ad986be1bf099a54bae1b3c1ac9cfdce, type: 3}
+  - {fileID: 8300000, guid: 5fa579d29458845469c6cbed0b0608a8, type: 3}
+  - {fileID: 8300000, guid: 50671ca0d22bfd74c8a2ccc02ef38bf8, type: 3}
+  - {fileID: 8300000, guid: dbd56533a8aca7a4ca2ebe060537faab, type: 3}
+  - {fileID: 8300000, guid: 5909a3f5a66dabd47ab1e3ae7b1f2020, type: 3}
   loseSounds:
   - {fileID: 8300000, guid: 665c3e173d1fc5f48b870a834fead819, type: 3}
   - {fileID: 8300000, guid: 5970e9894c6e17d47851428bfc8ac7b8, type: 3}
@@ -309,6 +317,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5f35395edc04a6b45a29c0ae01e4cae4, type: 3}
   - {fileID: 8300000, guid: 43989efec4482ef4a9cc622cee8f7db3, type: 3}
   - {fileID: 8300000, guid: 1ab3c9f2c8dbd3240af9e82eb0f08519, type: 3}
+  - {fileID: 8300000, guid: 0b9acebd52c23ca4f8ab6db58ac874f0, type: 3}
+  - {fileID: 8300000, guid: da1308fdd60325b48b12045a5f535fc9, type: 3}
+  - {fileID: 8300000, guid: 5a26383ac0df6e040bfe261bc0db8254, type: 3}
+  - {fileID: 8300000, guid: 60abcfc14538c144599df3959f5fc420, type: 3}
+  - {fileID: 8300000, guid: 0766a6e0fc71ce34eb01f878f297c6f5, type: 3}
+  - {fileID: 8300000, guid: f00429fc526d7f94ca7541a84a2b0837, type: 3}
+  - {fileID: 8300000, guid: 21079cc9f6bfc134d826ed3fccd61a96, type: 3}
 --- !u!120 &176930952
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1090,7 +1105,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3646322210924915379, guid: 14f6774f245a002479e3d63c298f7dc1, type: 3}
       propertyPath: m_Name
-      value: Main Camera (1)
+      value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 3646322210924915379, guid: 14f6774f245a002479e3d63c298f7dc1, type: 3}
       propertyPath: m_Layer
