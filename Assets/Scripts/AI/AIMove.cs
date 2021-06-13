@@ -14,6 +14,8 @@ public class AIMove : MonoBehaviour
 
     Animator m_Animator;
 
+    bool m_IsMerging = false;
+
     public void StopMovement()
     {
         m_Agent.isStopped = true;
@@ -21,16 +23,18 @@ public class AIMove : MonoBehaviour
         m_Animator.SetBool("IsStopped", true);
     }
 
-    public void StartMovement()
+    public void StartMovement(Transform newDestination = null, bool run = false)
     {
         if (m_Agent.isOnNavMesh)
         {
             m_Agent.isStopped = false;
 
-            SetDestination(m_Destination);
+            SetDestination(newDestination ? newDestination : m_Destination);
         }
 
         m_Animator.SetBool("IsStopped", false);
+
+        m_Animator.SetBool("Run", run);
     }
 
     void Start()
@@ -56,6 +60,8 @@ public class AIMove : MonoBehaviour
     {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
         agent.Warp (startingTransform.position);
+
+        m_IsMerging = false;
 
         SetDestination(destTransform);
     }

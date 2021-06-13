@@ -60,10 +60,10 @@ public class SelectionManager : MonoBehaviour
             lineRenderer.positionCount--;
         }
 
-        OnTargerRemoved(newTarget);
+        OnTargetRemoved(newTarget);
     }
 
-    private void OnTargerRemoved(PropsHolder target)
+    private void OnTargetRemoved(PropsHolder target)
     {
         target.GetComponent<AIMove>().StartMovement();
     }
@@ -90,23 +90,30 @@ public class SelectionManager : MonoBehaviour
             {
                 ScoreManager.Instance.GainPoints(m_SelectedTargets.Count, commonProps.Count);
             }
-            for(int i = 0; i < m_SelectedTargets.Count;) // No need to advance in the list cause we remove them in the function
-            {
-                AISpawner.GetInstance().OnPawnReachedDestination(m_SelectedTargets[i].GetComponent<AIMove>());
-            }
+
+
+            CreateMerger(m_SelectedTargets);
+            
             RemoveSelection();
         }
     }
 
+    private void CreateMerger(List<PropsHolder> holders)
+    {
+        GameObject newObj = new GameObject("Merger");
+
+        GameObject mergerGO = Instantiate(newObj);
+
+        Merger merger = mergerGO.AddComponent<Merger>();
+
+        merger.StartMerge(holders);
+    }
+
     private void RemoveSelection()
     {
-        foreach (PropsHolder propsHolder in m_SelectedTargets)
+        for (int i = 0; i < m_SelectedTargets.Count;) // No need to advance in the list cause we remove them in the function
         {
-            OnTargerRemoved(propsHolder);
+            RemoveTarget(m_SelectedTargets[i]);
         }
-
-        lineRenderer.positionCount = 0;
-
-        m_SelectedTargets.Clear();
     }
 }
