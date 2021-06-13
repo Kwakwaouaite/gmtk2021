@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 3e3495dee49e5c34d8b8b1b3d4da7992
+guid: f50a30b2fcf9a8e4999b907504cecb6a
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Arrow
+    second: {fileID: 2100000, guid: 9962aad8e431fc345905ef64a32c92f9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
