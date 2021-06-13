@@ -22,6 +22,16 @@ public class AIMove : MonoBehaviour
     float m_RunSpeed = 4.0f;
 
     [SerializeField]
+    float m_DistMinForExtraRunSpeed = 10.0f;
+
+    [SerializeField]
+    float m_PercentageBoostRunFar = 1.2f;
+
+    [SerializeField]
+    float m_MaxDistanceExtraSpeed = 40.0f;
+
+
+    [SerializeField]
     ParticleSystem m_LoveParticle;
 
     Merger m_Merger;
@@ -53,6 +63,24 @@ public class AIMove : MonoBehaviour
         m_Animator.SetBool("Run", run);
 
         m_Agent.speed =  run ? m_RunSpeed : m_BaseSpeed;
+
+
+
+        if (run)
+        {
+            float distanceToDest = (m_Destination.position - transform.position).magnitude;
+
+            if (distanceToDest > m_DistMinForExtraRunSpeed)
+            {
+                float percentageBoost = (distanceToDest - m_DistMinForExtraRunSpeed) / (m_MaxDistanceExtraSpeed - m_DistMinForExtraRunSpeed);
+
+                percentageBoost = Mathf.Clamp(percentageBoost, 0.0f, 1.0f);
+
+                m_Agent.speed *= (1 + percentageBoost * m_PercentageBoostRunFar);
+            }
+
+            //m_Agent.speed *= (1 + (distanceToDest - m_DistMinForExtraRunSpeed) / (m_MaxExtraSpeedMultiplier - m_DistMinForExtraRunSpeed)) * m_MaxExtraSpeedMultiplier;
+        }
     }
 
     void Start()
