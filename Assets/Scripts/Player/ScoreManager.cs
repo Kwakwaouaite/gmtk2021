@@ -23,6 +23,9 @@ public class ScoreManager : MonoBehaviour
         s_instance = this;
     }
 
+    [SerializeField]
+    private int m_PenaltyWhenWrongGroup = 10;
+
     private Text scoreText;
     private int m_Score = 0;
 
@@ -40,6 +43,19 @@ public class ScoreManager : MonoBehaviour
     {
         m_Score += points;
         UpdateScore();
+        EndGameManager.Instance.GainLoveGauge(points);
+    }
+
+    public void LosePoints()
+    {
+        LosePoints(m_PenaltyWhenWrongGroup);
+    }
+
+    public void LosePoints(int points)
+    {
+        m_Score -= points;
+        UpdateScore();
+        EndGameManager.Instance.GainLoveGauge(-points);
     }
 
     private void UpdateScore()

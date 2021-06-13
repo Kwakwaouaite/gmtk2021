@@ -84,7 +84,7 @@ public class SelectionManager : MonoBehaviour
             }
             if(commonProps.Count == 0)
             {
-                //Lose
+                ScoreManager.Instance.LosePoints();
             }
             else
             {

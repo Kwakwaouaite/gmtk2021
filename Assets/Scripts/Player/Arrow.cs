@@ -52,6 +52,7 @@ public class Arrow : MonoBehaviour
             if(target)
             {
                 SelectionManager.Instance.AddTarget(target);
+                EndGameManager.Instance.LoseBullet();
             }
 
             StartCoroutine(Disintegrate());
