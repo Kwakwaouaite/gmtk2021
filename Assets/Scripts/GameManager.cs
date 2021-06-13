@@ -16,12 +16,15 @@ public class GameManager : MonoBehaviour
     }
     private Status m_status;
 
+    public GameObject m_gameRoot;
+    public GameObject m_menuRoot;
+
     public Text m_debugText;
 
     // Start is called before the first frame update
     void Start()
     {
-	m_status = Status.MENU;
+	GotoMenu();
     }
 
     // Update is called once per frame
@@ -31,12 +34,22 @@ public class GameManager : MonoBehaviour
 	    m_debugText.text = GetStatusString();
     }
 
-    public void GotoMenu() { m_status = Status.MENU; }
-    public void GotoGame() { m_status = Status.GAME; }
-    public void GotoScores() { m_status = Status.SCORES; }
-    public void GotoRules() { m_status = Status.RULES; }
-    public void GotoGameOver() { m_status = Status.GAMEOVER; }
-    public void GotoExit() { m_status = Status.EXIT; }
+    public void GotoMenu()
+    {
+	m_status = Status.MENU;
+	m_gameRoot.SetActive(false);
+	m_menuRoot.SetActive(true);
+    }
+    public void GotoGame()
+    {
+	m_status = Status.GAME;
+	m_gameRoot.SetActive(true);
+	m_menuRoot.SetActive(false);
+    }
+    public void GotoScores()	{ m_status = Status.SCORES; }
+    public void GotoRules()	{ m_status = Status.RULES; }
+    public void GotoGameOver()	{ m_status = Status.GAMEOVER; }
+    public void GotoExit()	{ m_status = Status.EXIT; }
 
     public string GetStatusString()
     {
