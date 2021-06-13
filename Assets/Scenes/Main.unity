@@ -2354,6 +2354,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3949776224987171256, guid: d78a9ae39e653774483a48b736d6e8a6, type: 3}
+--- !u!223 &1668389790 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 119102392162042983, guid: 4401d27a54b472a439a0c515c73a9f35, type: 3}
+  m_PrefabInstance: {fileID: 6872774311285208688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1686392531 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4166346232983038760, guid: d78a9ae39e653774483a48b736d6e8a6, type: 3}
@@ -3008,6 +3013,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6489088908065948868, guid: addb0b51f7e010948b493e03fa03c3cf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: addb0b51f7e010948b493e03fa03c3cf, type: 3}
 --- !u!1001 &2560402133993393744
@@ -3123,6 +3132,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 616155610}
     - target: {fileID: 3097821456672651241, guid: 761a571d5f15d7742a7db8dff9468ad3, type: 3}
+      propertyPath: m_pauseCanvas
+      value: 
+      objectReference: {fileID: 1668389790}
+    - target: {fileID: 3097821456672651241, guid: 761a571d5f15d7742a7db8dff9468ad3, type: 3}
       propertyPath: m_playerInput
       value: 
       objectReference: {fileID: 267497115}
@@ -3179,30 +3192,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 158545261081996142, guid: 4401d27a54b472a439a0c515c73a9f35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 996187257}
-    - target: {fileID: 158545261081996142, guid: 4401d27a54b472a439a0c515c73a9f35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GotoExit
+    - target: {fileID: 119102392162042983, guid: 4401d27a54b472a439a0c515c73a9f35, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 840263965698232334, guid: 4401d27a54b472a439a0c515c73a9f35, type: 3}
+    - target: {fileID: 158545261081996142, guid: 4401d27a54b472a439a0c515c73a9f35, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 996187257}
     - target: {fileID: 840263965698232334, guid: 4401d27a54b472a439a0c515c73a9f35, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 996187257}
+    - target: {fileID: 2036943622291687002, guid: 4401d27a54b472a439a0c515c73a9f35, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 996187257}
+    - target: {fileID: 2036943622291687002, guid: 4401d27a54b472a439a0c515c73a9f35, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GotoGame
+      value: Unpause
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917821637553115390, guid: 4401d27a54b472a439a0c515c73a9f35, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 996187257}
+    - target: {fileID: 4917821637553115390, guid: 4401d27a54b472a439a0c515c73a9f35, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GotoMenu
       objectReference: {fileID: 0}
     - target: {fileID: 6175540192066141265, guid: 4401d27a54b472a439a0c515c73a9f35, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 996187257}
-    - target: {fileID: 6175540192066141265, guid: 4401d27a54b472a439a0c515c73a9f35, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GotoRules
-      objectReference: {fileID: 0}
     - target: {fileID: 6872774311314918241, guid: 4401d27a54b472a439a0c515c73a9f35, type: 3}
       propertyPath: m_Name
       value: GameRootMenu

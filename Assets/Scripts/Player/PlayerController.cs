@@ -50,4 +50,9 @@ public class PlayerController : MonoBehaviour
     {
         lookInput = value.Get<Vector2>();
     }
+
+    public void OnPause()
+    {
+        GameManager.Instance.Pause();
+    }
 }

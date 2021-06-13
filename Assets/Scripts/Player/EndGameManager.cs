@@ -62,6 +62,7 @@ public class EndGameManager : MonoBehaviour
         m_CurrentLoveGauge = m_MaxLoveGauge;
         m_CurrentLoveGaugeDecreasingSpeed = m_DecreasingLoveGaugeStartingSpeed;
         UpdateNbrBullets();
+        ScoreManager.Instance.ResetScore();
     }
 
     // Update is called once per frame
