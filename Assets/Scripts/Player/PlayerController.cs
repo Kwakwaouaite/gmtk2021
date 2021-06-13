@@ -14,6 +14,15 @@ public class PlayerController : MonoBehaviour
     Vector2 lookInput;
     Rigidbody rb;
 
+    private Vector3 startingPos;
+    private Quaternion startingRot;
+
+    private void Awake()
+    {
+        startingPos = transform.position;
+        startingRot = transform.rotation;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,5 +63,11 @@ public class PlayerController : MonoBehaviour
     public void OnPause()
     {
         GameManager.Instance.Pause();
+    }
+
+    public void ResetPosition()
+    {
+        transform.position = startingPos;
+        transform.rotation = startingRot;
     }
 }
