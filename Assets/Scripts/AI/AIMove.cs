@@ -12,9 +12,13 @@ public class AIMove : MonoBehaviour
 
     NavMeshAgent m_Agent;
 
+    Animator m_Animator;
+
     public void StopMovement()
     {
         m_Agent.isStopped = true;
+
+        m_Animator.SetBool("IsStopped", true);
     }
 
     public void StartMovement()
@@ -25,11 +29,15 @@ public class AIMove : MonoBehaviour
 
             SetDestination(m_Destination);
         }
+
+        m_Animator.SetBool("IsStopped", false);
     }
 
     void Start()
     {
         m_Agent = GetComponent<NavMeshAgent>();
+
+        m_Animator = GetComponentInChildren <Animator>();
     }
 
     private void Update()
