@@ -30,9 +30,9 @@ public class AISpawner : MonoBehaviour
     [SerializeField]
     SpawnPointGroup[] m_SpawnPointGroups;
 
+    [SerializeField]
+    List<GameObject> m_SpawnPointMiddle;
 
-
-    List<GameObject> m_ActiceAIs;
     List<GameObject> m_InactiveAIs;
 
     private static AISpawner s_Instance;
@@ -64,14 +64,18 @@ public class AISpawner : MonoBehaviour
     {
         s_Instance = this;
 
-        m_ActiceAIs = new List<GameObject>();
         m_InactiveAIs = new List<GameObject>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        m_LastSpawn = Time.time;
+        Reset();
+
+        foreach (GameObject spawnPoint in m_SpawnPointMiddle)
+        {
+            SpawnAI(spawnPoint.transform);
+        }
     }
 
     // Update is called once per frame
@@ -85,7 +89,12 @@ public class AISpawner : MonoBehaviour
         }
     }
 
-    private void SpawnAI()
+    public void Reset()
+    {
+        m_LastSpawn = Time.time;
+    }
+
+    private void SpawnAI(Transform start = null)
     {
         GameObject newAgent;
         
@@ -101,7 +110,7 @@ public class AISpawner : MonoBehaviour
             newAgent = Instantiate(m_AIPrefab, this.transform);
         }
 
-        InitializeNavmeshAgent(newAgent);
+        InitializeNavmeshAgent(newAgent, start);
 
         InitializeProp(newAgent);
     }
@@ -115,14 +124,15 @@ public class AISpawner : MonoBehaviour
         propManager.ResetAndActivateProps(propsToUse);
     }
 
-    private void InitializeNavmeshAgent(GameObject newAgent)
+    private void InitializeNavmeshAgent(GameObject newAgent, Transform forceStart = null)
     {
         int spawnGroupIndex = UnityEngine.Random.Range(0, 2);
 
         SpawnPointGroup startingGroup = m_SpawnPointGroups[spawnGroupIndex];
         SpawnPointGroup destinationGroup = m_SpawnPointGroups[1 - spawnGroupIndex];
 
-        Transform spawnTransform = startingGroup.m_SpawnPoints[UnityEngine.Random.Range(0, startingGroup.m_SpawnPoints.Length)];
+        Transform spawnTransform = forceStart != null ? forceStart : startingGroup.m_SpawnPoints[UnityEngine.Random.Range(0, startingGroup.m_SpawnPoints.Length)];
+
         Transform destinationTransform = destinationGroup.m_SpawnPoints[UnityEngine.Random.Range(0, destinationGroup.m_SpawnPoints.Length)];
 
         AIMove moverNewAgent = newAgent.GetComponent<AIMove>();
