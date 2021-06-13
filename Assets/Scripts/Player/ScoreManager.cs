@@ -68,4 +68,9 @@ public class ScoreManager : MonoBehaviour
     {
         scoreText.text = m_Score.ToString();
     }
+
+    public int GetScore()
+    {
+        return m_Score;
+    }
 }

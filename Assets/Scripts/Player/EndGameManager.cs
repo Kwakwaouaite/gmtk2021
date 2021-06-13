@@ -48,15 +48,17 @@ public class EndGameManager : MonoBehaviour
     private float m_CurrentLoveGaugeDecreasingSpeed;
     private float m_CurrentTime;
     private int m_CurrentNbrBullets;
+    private bool m_gameInMotion;
 
     // Start is called before the first frame update
     void Start()
     {
-        InitGame();
+        m_gameInMotion = false;
     }
 
     public void InitGame()
     {
+        m_gameInMotion = true;
         m_CurrentNbrBullets = m_nbrBullets;
         m_CurrentTime = m_MaxTime;
         m_CurrentLoveGauge = m_MaxLoveGauge;
@@ -68,6 +70,9 @@ public class EndGameManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!m_gameInMotion)
+            return;
+
         if(m_MaxLoveGauge > 0)
         {
             m_CurrentLoveGauge -= Time.fixedDeltaTime * m_CurrentLoveGaugeDecreasingSpeed;
@@ -130,6 +135,7 @@ public class EndGameManager : MonoBehaviour
 
     void EndGame()
     {
-        Time.timeScale = 0;
+        m_gameInMotion = false;
+        GameManager.Instance.GotoGameOver();
     }
 }
