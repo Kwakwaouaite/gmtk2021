@@ -89,9 +89,14 @@ public class Merger : MonoBehaviour
         {
             CreateSmoke(m_IsSuccess);
 
-            foreach (AIMove aiMove in m_AIReadyToMerge)
+            if (m_AIReadyToMerge.Count == 2) // 1st time we pass here
             {
-                AISpawner.GetInstance().DeactivatePawn(aiMove);
+                foreach (AIMove aiMove in m_AIReadyToMerge)
+                {
+                    AISpawner.GetInstance().DeactivatePawn(aiMove);
+                }
+
+                SelectionManager.Instance.PlaySound(m_IsSuccess);
             }
         }
 

@@ -91,18 +91,28 @@ public class SelectionManager : MonoBehaviour
             if (isSuccess)
             {
                 ScoreManager.Instance.GainPoints(m_SelectedTargets.Count, commonProps.Count);
-                GetComponent<AudioSource>().PlayOneShot(GetRandomWinSound());
             }
             else
             {
                 ScoreManager.Instance.LosePoints();
-                GetComponent<AudioSource>().PlayOneShot(GetRandomLoseSound());
             }
 
 
             CreateMerger(m_SelectedTargets, isSuccess);
             
             RemoveSelection();
+        }
+    }
+
+    public void PlaySound(bool isSuccess)
+    {
+        if (isSuccess)
+        {
+            GetComponent<AudioSource>().PlayOneShot(GetRandomWinSound());
+        }
+        else
+        {
+            GetComponent<AudioSource>().PlayOneShot(GetRandomLoseSound());
         }
     }
 
