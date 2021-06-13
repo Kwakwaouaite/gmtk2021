@@ -43,7 +43,7 @@ public class Arrow : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeAll;
 
             PropsHolder target = collision.gameObject.GetComponent<PropsHolder>();
-            if(target)
+            if(target && target.GetComponent<AIMove>().Merger == null )
             {
                 SelectionManager.Instance.AddTarget(target);
                 EndGameManager.Instance.LoseBullet();

@@ -26,7 +26,7 @@ public class AIMove : MonoBehaviour
 
     Merger m_Merger;
 
-    public Merger Merger { set { m_Merger = value; } }
+    public Merger Merger { set { m_Merger = value; } get { return m_Merger; } }
 
     //float m_CurrentNormalSpeed = 1.0f;
 
