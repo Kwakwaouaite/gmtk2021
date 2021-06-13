@@ -3,7 +3,27 @@ guid: d78a9ae39e653774483a48b736d6e8a6
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bridge_Bricks
+    second: {fileID: 2100000, guid: bc3f5e41b0fb81c46b6e07075ebd49ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bridge_Concrete
+    second: {fileID: 2100000, guid: e4dbe6e80ab28e34793de60c9159fcb4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lights_Emissive
+    second: {fileID: 2100000, guid: 313435436d874ef4ba600ebfbd9e1d4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: 8aabb11a9db696644a45715c8be25bd5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
