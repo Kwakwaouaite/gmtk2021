@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,11 @@ public class AIMove : MonoBehaviour
     Animator m_Animator;
 
     bool m_IsMerging = false;
+
+    [SerializeField]
+    float m_BaseSpeed = 1.0f;
+
+    //float m_CurrentNormalSpeed = 1.0f;
 
     public void StopMovement()
     {
@@ -35,6 +41,8 @@ public class AIMove : MonoBehaviour
         m_Animator.SetBool("IsStopped", false);
 
         m_Animator.SetBool("Run", run);
+
+        m_Agent.speed =  run ? m_BaseSpeed * 4 : m_BaseSpeed;
     }
 
     void Start()
@@ -78,5 +86,13 @@ public class AIMove : MonoBehaviour
     {
         Vector3 shift = this.transform.position - position;
         return shift.magnitude < m_CloseToEpsilon;
+    }
+
+    internal void OnTargetRemoved()
+    {
+        if (m_Agent.isOnNavMesh && m_Agent.isStopped)
+        {
+            StartMovement();
+        }
     }
 }

@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Destination: {fileID: 0}
-  m_CloseToEpsilon: 2
+  m_CloseToEpsilon: 1
 --- !u!114 &8244058798353793817
 MonoBehaviour:
   m_ObjectHideFlags: 0

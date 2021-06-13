@@ -68,7 +68,7 @@ public class SelectionManager : MonoBehaviour
 
     private void OnTargetRemoved(PropsHolder target)
     {
-        target.GetComponent<AIMove>().StartMovement();
+        target.GetComponent<AIMove>().OnTargetRemoved();
     }
 
     public void OnCancelSelection()
