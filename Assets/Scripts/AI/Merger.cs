@@ -12,6 +12,9 @@ public class Merger : MonoBehaviour
     bool m_SmokeStarted;
 
     [SerializeField]
+    float m_DestroyDelay = 4.0f;
+
+    [SerializeField]
     ParticleSystem m_Smoke;
 
     private void InitList(List<PropsHolder> propsHolders)
@@ -88,6 +91,12 @@ public class Merger : MonoBehaviour
                     AISpawner.GetInstance().DeactivatePawn(aiMove);
                 }
             }
+        }
+
+        if (m_AIReadyToMerge.Count == m_AIs.Count)
+        {
+            Debug.Log("DestroyMerger");
+            Destroy(gameObject, m_DestroyDelay);
         }
 
     }

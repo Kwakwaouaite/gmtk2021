@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2560402134386644155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2560402134386644158}
+  - component: {fileID: 2560402134386644157}
+  - component: {fileID: 2560402134386644156}
+  m_Layer: 0
+  m_Name: AIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2560402134386644158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560402134386644155}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2560402134386644157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560402134386644155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be9a3804c7fc2b40aba2e7c8c004f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TimeBetweenSpawn: 1
+  m_AIPrefab: {fileID: 5395052970089053363, guid: c3c0f8ca62842ae43b3dea39a3da0813, type: 3}
+  m_MergerPrefab: {fileID: 7413309109833601793, guid: cd849e46a952eaf418a90f193ecf1d7f, type: 3}
+  m_SpawnPointGroups:
+  - m_SpawnPoints:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - m_SpawnPoints:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+--- !u!114 &2560402134386644156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560402134386644155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad7cdc50b4c322478f04344a3a5cd02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PropGroups:
+  - name: Facial
+    m_EProps: 01000000020000000300000004000000
+  - name: Hands
+    m_EProps: 050000000600000007000000
+  - name: Back
+    m_EProps: 08000000090000000a0000000b000000
+  - name: Head
+    m_EProps: 0c0000000d0000000e0000000f000000100000001200000013000000
+  - name: Foot
+    m_EProps: 140000001500000016000000
+  m_PropColors:
+  - {r: 1, g: 0.8784314, b: 0.95686275, a: 1}
+  - {r: 1, g: 0.7490196, b: 0.85490197, a: 1}
+  - {r: 0.9882353, g: 0.972549, b: 0.827451, a: 1}
+  - {r: 0.9882353, g: 0.8784314, b: 0.78039217, a: 1}
+  - {r: 1, g: 0.5921569, b: 0.6, a: 1}
+  - {r: 0.7921569, g: 0.53333336, b: 0.3372549, a: 1}
+  - {r: 0.6313726, g: 0.44313726, b: 0.28627452, a: 1}
+  - {r: 0.5529412, g: 0.8352941, b: 1, a: 1}
+  - {r: 0.75686276, g: 0.9372549, b: 0.9843137, a: 1}
+  - {r: 0.81960785, g: 1, b: 0.7764706, a: 1}
+  - {r: 0.9372549, g: 0.7764706, b: 1, a: 1}
+  - {r: 0.9529412, g: 1, b: 0.7764706, a: 1}
+  - {r: 0.8039216, g: 0.7764706, b: 1, a: 1}
