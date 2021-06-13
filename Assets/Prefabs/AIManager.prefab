@@ -72,14 +72,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PropGroups:
   - name: Facial
+    probaEmpty: 0.15
     m_EProps: 01000000020000000300000004000000
   - name: Hands
+    probaEmpty: 0.15
     m_EProps: 050000000600000007000000
   - name: Back
+    probaEmpty: 0.15
     m_EProps: 080000000a0000000b000000
   - name: Head
+    probaEmpty: 0
     m_EProps: 0c0000000d0000000e0000000f000000100000001200000013000000
   - name: Foot
+    probaEmpty: 0.1
     m_EProps: 140000001500000016000000
   m_PropColors:
   - {r: 1, g: 0.8784314, b: 0.95686275, a: 1}

@@ -9,6 +9,7 @@ public class PropsManager : MonoBehaviour
     public struct PropGroup
     {
         public string name;
+        public float probaEmpty;
         public List<EProp> m_EProps;
     }
 
@@ -37,7 +38,10 @@ public class PropsManager : MonoBehaviour
 
         foreach (PropGroup group in m_PropGroups)
         {
-            randomProps.Add(group.m_EProps[Random.Range(0, group.m_EProps.Count)]);
+            if (Random.Range(0f, 1.0f) > group.probaEmpty)
+            {
+                randomProps.Add(group.m_EProps[Random.Range(0, group.m_EProps.Count)]);
+            }
         }
 
         return randomProps;
