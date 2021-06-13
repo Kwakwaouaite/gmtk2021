@@ -15,10 +15,15 @@ public class AIMove : MonoBehaviour
 
     Animator m_Animator;
 
-    bool m_IsMerging = false;
-
     [SerializeField]
     float m_BaseSpeed = 1.0f;
+
+    [SerializeField]
+    float m_RunSpeed = 4.0f;
+
+    Merger m_Merger;
+
+    public Merger Merger { set { m_Merger = value; } }
 
     //float m_CurrentNormalSpeed = 1.0f;
 
@@ -42,7 +47,7 @@ public class AIMove : MonoBehaviour
 
         m_Animator.SetBool("Run", run);
 
-        m_Agent.speed =  run ? m_BaseSpeed * 4 : m_BaseSpeed;
+        m_Agent.speed =  run ? m_RunSpeed : m_BaseSpeed;
     }
 
     void Start()
@@ -56,9 +61,17 @@ public class AIMove : MonoBehaviour
     {
         if (m_Destination)
         {
-            if (IsCloseTo(m_Destination.position))
+            if (IsCloseTo(m_Destination.position) && !m_Agent.isStopped)
             {
-                AISpawner.GetInstance().OnPawnReachedDestination(this);
+                if (m_Merger != null)
+                {
+                    StopMovement();
+                    m_Merger.OnAIArriveInZone(this);
+                }
+                else
+                {
+                    AISpawner.GetInstance().DeactivatePawn(this);
+                }
             }
         }
 
@@ -69,7 +82,7 @@ public class AIMove : MonoBehaviour
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
         agent.Warp (startingTransform.position);
 
-        m_IsMerging = false;
+        m_Merger = null;
 
         SetDestination(destTransform);
     }

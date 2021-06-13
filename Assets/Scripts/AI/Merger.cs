@@ -7,9 +7,14 @@ public class Merger : MonoBehaviour
 {
     List<AIMove> m_AIs;
 
+    List<AIMove> m_AIReadyToMerge;
+
+    bool m_SmokeStarted;
+
     private void InitList(List<PropsHolder> propsHolders)
     {
         m_AIs = new List<AIMove>();
+        m_AIReadyToMerge = new List<AIMove>();
 
         foreach (PropsHolder propsHolder in propsHolders)
         {
@@ -26,6 +31,7 @@ public class Merger : MonoBehaviour
 
         foreach (AIMove ai in m_AIs)
         {
+            ai.Merger = this;
             ai.StartMovement(this.transform, true);
         }
     }
@@ -47,5 +53,28 @@ public class Merger : MonoBehaviour
         center /= m_AIs.Count;
 
         this.transform.position = center;
+    }
+
+    public void OnAIArriveInZone(AIMove ai)
+    {
+        m_AIReadyToMerge.Add(ai);
+
+        if (m_SmokeStarted)
+        {
+            AISpawner.GetInstance().DeactivatePawn(ai);
+        }
+        else
+        {
+            if (m_AIReadyToMerge.Count > 1)
+            {
+                //Start FX
+
+                foreach (AIMove aiMove in m_AIReadyToMerge)
+                {
+                    AISpawner.GetInstance().DeactivatePawn(aiMove);
+                }
+            }
+        }
+
     }
 }

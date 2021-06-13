@@ -40,7 +40,7 @@ public class AISpawner : MonoBehaviour
         return s_Instance;
     }
 
-    public void OnPawnReachedDestination(AIMove aIMove)
+    public void DeactivatePawn(AIMove aIMove)
     {
         aIMove.gameObject.SetActive(false);
 
