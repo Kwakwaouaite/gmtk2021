@@ -21,6 +21,9 @@ public class AISpawner : MonoBehaviour
     float m_LastSpawn = 0.0f;
 
     [SerializeField]
+    int m_MaxAICount = 60;
+
+    [SerializeField]
     GameObject m_AIPrefab;
 
     [SerializeReference]
@@ -33,6 +36,7 @@ public class AISpawner : MonoBehaviour
     [SerializeField]
     List<GameObject> m_SpawnPointMiddle;
 
+    int m_CreatedAICount = 0;
     List<GameObject> m_InactiveAIs;
 
     private static AISpawner s_Instance;
@@ -96,7 +100,8 @@ public class AISpawner : MonoBehaviour
 
     private void SpawnAI(Transform start = null)
     {
-        GameObject newAgent;
+
+        GameObject newAgent = null;
         
         if (m_InactiveAIs.Count > 0)
         {
@@ -105,14 +110,20 @@ public class AISpawner : MonoBehaviour
 
             newAgent.SetActive(true);
         }
-        else
+        else if (m_CreatedAICount < m_MaxAICount)
         {
             newAgent = Instantiate(m_AIPrefab, this.transform);
+
+            m_CreatedAICount++;
         }
 
-        InitializeNavmeshAgent(newAgent, start);
+        if (newAgent != null)
+        { 
+            InitializeNavmeshAgent(newAgent, start);
 
-        InitializeProp(newAgent);
+            InitializeProp(newAgent);
+        }
+
     }
 
     private void InitializeProp(GameObject newAgent)

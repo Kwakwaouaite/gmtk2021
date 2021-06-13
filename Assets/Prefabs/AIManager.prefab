@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TimeBetweenSpawn: 1
+  m_MaxAICount: 60
   m_AIPrefab: {fileID: 5395052970089053363, guid: c3c0f8ca62842ae43b3dea39a3da0813, type: 3}
   m_MergerPrefab: {fileID: 7413309109833601793, guid: cd849e46a952eaf418a90f193ecf1d7f, type: 3}
   m_SpawnPointGroups:
@@ -56,6 +57,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
+  m_SpawnPointMiddle: []
 --- !u!114 &2560402134386644156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +76,7 @@ MonoBehaviour:
   - name: Hands
     m_EProps: 050000000600000007000000
   - name: Back
-    m_EProps: 08000000090000000a0000000b000000
+    m_EProps: 080000000a0000000b000000
   - name: Head
     m_EProps: 0c0000000d0000000e0000000f000000100000001200000013000000
   - name: Foot
