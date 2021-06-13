@@ -24,10 +24,6 @@ public class Arrow : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.magnitude > m_MaxDistance)
-        {
-            Destroy(gameObject);
-        }
     }
 
     // Update is called once per frame
