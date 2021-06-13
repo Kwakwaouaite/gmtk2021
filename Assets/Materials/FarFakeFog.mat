@@ -11,7 +11,7 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: af7f94d80ec307e4b8a301443513f536, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -81,8 +81,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_262748a879254f1cbe9c427bf6a20eed: 14.5
-    - Vector1_8f3beb4369e9439884f245435d7d6910: 0.074
+    - Vector1_262748a879254f1cbe9c427bf6a20eed: 25.5
+    - Vector1_53b1853c5b02481780f0ee104896ffb1: 0.01
+    - Vector1_8f3beb4369e9439884f245435d7d6910: 0.094
     - Vector1_c8d57254993b4484af26b6ab36b721eb: 2
     - _AlphaClip: 0
     - _Blend: 0
@@ -116,6 +117,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
+    - Color_0050df0d89cc49b4806a2eaf6da49d2a: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
