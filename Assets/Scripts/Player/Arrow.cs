@@ -6,8 +6,6 @@ public class Arrow : MonoBehaviour
 {
     [SerializeField]
     float m_TimeForDisintegrate = 1;
-    [SerializeField]
-    float m_MaxDistance = 300;
 
     MeshRenderer mesh;
     Rigidbody rb;
@@ -65,5 +63,5 @@ public class Arrow : MonoBehaviour
             mesh.material.SetFloat("_Intensity", timeSinceStart / m_TimeForDisintegrate);
         }
         Destroy(gameObject);
-   }
+    }
 }
