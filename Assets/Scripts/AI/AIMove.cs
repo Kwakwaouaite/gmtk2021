@@ -81,6 +81,10 @@ public class AIMove : MonoBehaviour
 
             //m_Agent.speed *= (1 + (distanceToDest - m_DistMinForExtraRunSpeed) / (m_MaxExtraSpeedMultiplier - m_DistMinForExtraRunSpeed)) * m_MaxExtraSpeedMultiplier;
         }
+        else
+        {
+            StopLove();
+        }
     }
 
     void Start()
