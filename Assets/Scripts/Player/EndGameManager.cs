@@ -52,6 +52,11 @@ public class EndGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InitGame();
+    }
+
+    public void InitGame()
+    {
         m_CurrentNbrBullets = m_nbrBullets;
         m_CurrentTime = m_MaxTime;
         m_CurrentLoveGauge = m_MaxLoveGauge;

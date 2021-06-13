@@ -39,17 +39,29 @@ public class GameManager : MonoBehaviour
 	m_status = Status.MENU;
 	m_gameRoot.SetActive(false);
 	m_menuRoot.SetActive(true);
+    Cursor.lockState = CursorLockMode.None;
     }
     public void GotoGame()
     {
 	m_status = Status.GAME;
 	m_gameRoot.SetActive(true);
 	m_menuRoot.SetActive(false);
+    Cursor.lockState = CursorLockMode.Locked;
     }
     public void GotoScores()	{ m_status = Status.SCORES; }
     public void GotoRules()	{ m_status = Status.RULES; }
     public void GotoGameOver()	{ m_status = Status.GAMEOVER; }
-    public void GotoExit()	{ m_status = Status.EXIT; }
+    public void GotoExit()
+    { 
+        m_status = Status.EXIT;
+#if UNITY_EDITOR
+        // Application.Quit() does not work in the editor so
+        // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+         Application.Quit();
+#endif
+    }
 
     public string GetStatusString()
     {

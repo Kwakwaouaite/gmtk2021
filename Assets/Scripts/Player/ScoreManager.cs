@@ -34,6 +34,12 @@ public class ScoreManager : MonoBehaviour
         scoreText = GetComponent<Text>();
     }
 
+    public void ResetScore()
+    {
+        m_Score = 0;
+        UpdateScore();
+    }
+
     public void GainPoints(int nbPeople, int nbcommonProps)
     {
         GainPoints(nbPeople * nbcommonProps * nbcommonProps);
