@@ -40,7 +40,9 @@ public class GameManager : MonoBehaviour
     public Canvas m_pauseCanvas;
     public Canvas m_gameCanvas;
     public Canvas m_menuCanvas;
+    public Canvas m_endMenuCanvas;
 
+    public Text m_endScoreText;
     public Text m_debugText;
 
     // Start is called before the first frame update
@@ -59,9 +61,9 @@ public class GameManager : MonoBehaviour
     public void GotoMenu()
     {
 	    m_status = Status.MENU;
-        m_menuCanvas.enabled = true;
-        m_pauseCanvas.enabled = false;
         DeactivateGame();
+        DisableAllCanvas();
+        m_menuCanvas.enabled = true;
     }
     public void GotoGame()
     {
@@ -70,7 +72,15 @@ public class GameManager : MonoBehaviour
     }
     public void GotoScores()	{ m_status = Status.SCORES; }
     public void GotoRules()	{ m_status = Status.RULES; }
-    public void GotoGameOver()	{ m_status = Status.GAMEOVER; }
+    public void GotoGameOver()
+    {
+        int score = ScoreManager.Instance.GetScore();
+        m_status = Status.GAMEOVER;
+        DeactivateGame();
+        DisableAllCanvas();
+        m_endMenuCanvas.enabled = true;
+        m_endScoreText.text = score.ToString();
+    }
     public void GotoExit()
     { 
         m_status = Status.EXIT;
@@ -87,23 +97,22 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         m_status = Status.PAUSE;
-        m_pauseCanvas.enabled = true;
         DeactivateGame();
+        DisableAllCanvas();
+        m_pauseCanvas.enabled = true;
     }
 
     public void Unpause()
     {
         Time.timeScale = 1;
         m_status = Status.GAME;
-        m_pauseCanvas.enabled = false;
         ActivateGame();
     }
 
     private void ActivateGame()
     {
         m_status = Status.GAME;
-        m_menuCanvas.enabled = false;
-        m_pauseCanvas.enabled = false;
+        DisableAllCanvas();
         m_gameCanvas.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         m_playerInput.actions.FindActionMap("Player").Enable();
@@ -111,9 +120,16 @@ public class GameManager : MonoBehaviour
 
     private void DeactivateGame()
     {
-        m_gameCanvas.enabled = false;
         Cursor.lockState = CursorLockMode.None;
         m_playerInput.actions.FindActionMap("Player").Disable();
+    }
+
+    private void DisableAllCanvas()
+    {
+        m_gameCanvas.enabled = false;
+        m_pauseCanvas.enabled = false;
+        m_endMenuCanvas.enabled = false;
+        m_menuCanvas.enabled = false;
     }
 
     public string GetStatusString()

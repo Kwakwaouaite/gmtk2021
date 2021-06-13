@@ -1353,6 +1353,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2309911655939019838}
     m_Modifications:
+    - target: {fileID: 21204214105466543, guid: 14f6774f245a002479e3d63c298f7dc1, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3395155811301f2449cb59e292f7f0f2, type: 3}
     - target: {fileID: 3646322210924915379, guid: 14f6774f245a002479e3d63c298f7dc1, type: 3}
       propertyPath: m_Name
       value: Main Camera
