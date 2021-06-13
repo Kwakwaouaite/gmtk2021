@@ -31,8 +31,6 @@ public class EndGameManager : MonoBehaviour
     private float m_DecreasingLoveGaugeEvolutingSpeed = .1f;
     [SerializeField]
     private float m_GainLoveGaugePerPoint = 1;
-    [SerializeField]
-    private bool m_CanSurpassMaxLoveGauge = false;
 
     [SerializeField]
     private float m_MaxTime = 100;
@@ -41,7 +39,7 @@ public class EndGameManager : MonoBehaviour
     private int m_nbrBullets = 50;
 
     public Text timerText;
-    public Text loveAmountText;
+    public Image loveAmountFill;
     public Text nbBulletsText;
 
     private float m_CurrentLoveGauge;
@@ -104,7 +102,7 @@ public class EndGameManager : MonoBehaviour
         if(m_MaxLoveGauge > 0)
         {
             m_CurrentLoveGauge += m_GainLoveGaugePerPoint * points;
-            if(!m_CanSurpassMaxLoveGauge && m_CurrentLoveGauge > m_MaxLoveGauge)
+            if(m_CurrentLoveGauge > m_MaxLoveGauge)
             {
                 m_CurrentLoveGauge = m_MaxLoveGauge;
             }
@@ -125,7 +123,7 @@ public class EndGameManager : MonoBehaviour
 
     void UpdateLoveGauge()
     {
-        loveAmountText.text = ((int)m_CurrentLoveGauge).ToString();
+        loveAmountFill.fillAmount = m_CurrentLoveGauge / m_MaxLoveGauge;
     }
 
     void UpdateNbrBullets()
