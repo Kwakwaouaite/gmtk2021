@@ -25,6 +25,9 @@ public class SelectionManager : MonoBehaviour
     private List<PropsHolder> m_SelectedTargets;
     private LineRenderer lineRenderer;
 
+    public List<AudioClip> winSounds;
+    public List<AudioClip> loseSounds;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -85,10 +88,12 @@ public class SelectionManager : MonoBehaviour
             if(commonProps.Count == 0)
             {
                 ScoreManager.Instance.LosePoints();
+                GetComponent<AudioSource>().PlayOneShot(GetRandomLoseSound());
             }
             else
             {
                 ScoreManager.Instance.GainPoints(m_SelectedTargets.Count, commonProps.Count);
+                GetComponent<AudioSource>().PlayOneShot(GetRandomWinSound());
             }
 
 
@@ -115,5 +120,15 @@ public class SelectionManager : MonoBehaviour
         {
             RemoveTarget(m_SelectedTargets[i]);
         }
+    }
+
+    public AudioClip GetRandomWinSound()
+    {
+        return winSounds[Random.Range(0, winSounds.Count)];
+    }
+
+    public AudioClip GetRandomLoseSound()
+    {
+        return loseSounds[Random.Range(0, loseSounds.Count)];
     }
 }
