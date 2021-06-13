@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -16,37 +17,40 @@ public class GameManager : MonoBehaviour
     }
     private Status m_status;
 
-    public GameObject m_gameRoot;
-    public GameObject m_menuRoot;
+    public PlayerInput m_playerInput;
+    public Canvas m_gameCanvas;
+    public Canvas m_menuCanvas;
 
     public Text m_debugText;
 
     // Start is called before the first frame update
     void Start()
     {
-	GotoMenu();
+	    GotoMenu();
     }
 
     // Update is called once per frame
     void Update()
     {
-	if(m_debugText)
-	    m_debugText.text = GetStatusString();
+	    if(m_debugText)
+	        m_debugText.text = GetStatusString();
     }
 
     public void GotoMenu()
     {
-	m_status = Status.MENU;
-	m_gameRoot.SetActive(false);
-	m_menuRoot.SetActive(true);
-    Cursor.lockState = CursorLockMode.None;
+	    m_status = Status.MENU;
+        m_gameCanvas.enabled = false;
+        m_menuCanvas.enabled = true;
+        Cursor.lockState = CursorLockMode.None;
+        m_playerInput.actions.FindActionMap("Player").Disable();
     }
     public void GotoGame()
     {
-	m_status = Status.GAME;
-	m_gameRoot.SetActive(true);
-	m_menuRoot.SetActive(false);
-    Cursor.lockState = CursorLockMode.Locked;
+	    m_status = Status.GAME;
+        m_gameCanvas.enabled = true;
+        m_menuCanvas.enabled = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        m_playerInput.actions.FindActionMap("Player").Enable();
     }
     public void GotoScores()	{ m_status = Status.SCORES; }
     public void GotoRules()	{ m_status = Status.RULES; }
