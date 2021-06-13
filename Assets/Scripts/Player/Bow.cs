@@ -7,7 +7,6 @@ public class Bow : MonoBehaviour
     public Camera cam;
     public Rigidbody playerRb;
     public GameObject arrowPrefab;
-    public Transform arrowSpawn;
     [SerializeField]
     float m_ShootVelocity = 20;
 
@@ -18,7 +17,7 @@ public class Bow : MonoBehaviour
     {
         if(m_ShootInput)
         {
-            GameObject newArrow = Instantiate(arrowPrefab, arrowSpawn.position, Quaternion.identity);
+            GameObject newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
             Rigidbody newArrowRb = newArrow.GetComponent<Rigidbody>();
             newArrowRb.velocity = cam.transform.forward * m_ShootVelocity;
             m_ShootInput = false;

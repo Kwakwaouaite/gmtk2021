@@ -25,6 +25,9 @@ public class SelectionManager : MonoBehaviour
     private List<PropsHolder> m_SelectedTargets;
     private LineRenderer lineRenderer;
 
+    public List<AudioClip> winSounds;
+    public List<AudioClip> loseSounds;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -85,15 +88,17 @@ public class SelectionManager : MonoBehaviour
             if(commonProps.Count == 0)
             {
                 ScoreManager.Instance.LosePoints();
+                GetComponent<AudioSource>().PlayOneShot(GetRandomLoseSound());
             }
             else
             {
                 ScoreManager.Instance.GainPoints(m_SelectedTargets.Count, commonProps.Count);
+                GetComponent<AudioSource>().PlayOneShot(GetRandomWinSound());
             }
-            for(int i = 0; i < m_SelectedTargets.Count;) // No need to advance in the list cause we remove them in the function
+            /*for(int i = 0; i < m_SelectedTargets.Count;) // No need to advance in the list cause we remove them in the function
             {
                 AISpawner.GetInstance().OnPawnReachedDestination(m_SelectedTargets[i].GetComponent<AIMove>());
-            }
+            }*/
             RemoveSelection();
         }
     }
@@ -108,5 +113,15 @@ public class SelectionManager : MonoBehaviour
         lineRenderer.positionCount = 0;
 
         m_SelectedTargets.Clear();
+    }
+
+    public AudioClip GetRandomWinSound()
+    {
+        return winSounds[Random.Range(0, winSounds.Count)];
+    }
+
+    public AudioClip GetRandomLoseSound()
+    {
+        return loseSounds[Random.Range(0, loseSounds.Count)];
     }
 }
