@@ -17,6 +17,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: CityBackground
+    second: {fileID: 2100000, guid: fbea03c3e78c1b045acef7db3d7cc828, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Lights_Emissive
     second: {fileID: 2100000, guid: 313435436d874ef4ba600ebfbd9e1d4c, type: 2}
   - first:
