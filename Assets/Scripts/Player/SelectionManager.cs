@@ -105,11 +105,14 @@ public class SelectionManager : MonoBehaviour
 
     private void CreateMerger(List<PropsHolder> holders)
     {
-        GameObject newObj = new GameObject("Merger");
+        GameObject mergerGO = Instantiate(AISpawner.GetInstance().MergerPrefab);
 
-        GameObject mergerGO = Instantiate(newObj);
+        Merger merger = mergerGO.GetComponentInChildren<Merger>();
 
-        Merger merger = mergerGO.AddComponent<Merger>();
+        if (merger == null)
+        {
+            merger = mergerGO.AddComponent<Merger>();
+        }
 
         merger.StartMerge(holders);
     }

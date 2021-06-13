@@ -11,6 +11,9 @@ public class Merger : MonoBehaviour
 
     bool m_SmokeStarted;
 
+    [SerializeField]
+    ParticleSystem m_Smoke;
+
     private void InitList(List<PropsHolder> propsHolders)
     {
         m_AIs = new List<AIMove>();
@@ -19,6 +22,14 @@ public class Merger : MonoBehaviour
         foreach (PropsHolder propsHolder in propsHolders)
         {
             m_AIs.Add(propsHolder.GetComponent<AIMove>());
+        }
+    }
+
+    private void Awake()
+    {
+        if (m_Smoke)
+        {
+            m_Smoke.Stop();
         }
     }
 
@@ -67,7 +78,10 @@ public class Merger : MonoBehaviour
         {
             if (m_AIReadyToMerge.Count > 1)
             {
-                //Start FX
+                if(m_Smoke)
+                {
+                    m_Smoke.Play();
+                }
 
                 foreach (AIMove aiMove in m_AIReadyToMerge)
                 {

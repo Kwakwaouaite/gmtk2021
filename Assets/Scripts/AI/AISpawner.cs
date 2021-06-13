@@ -23,8 +23,14 @@ public class AISpawner : MonoBehaviour
     [SerializeField]
     GameObject m_AIPrefab;
 
+    [SerializeReference]
+    GameObject m_MergerPrefab;
+    public GameObject MergerPrefab { get { return m_MergerPrefab; } }
+
     [SerializeField]
     SpawnPointGroup[] m_SpawnPointGroups;
+
+
 
     List<GameObject> m_ActiceAIs;
     List<GameObject> m_InactiveAIs;
