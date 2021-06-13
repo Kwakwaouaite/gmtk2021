@@ -21,6 +21,9 @@ public class AIMove : MonoBehaviour
     [SerializeField]
     float m_RunSpeed = 4.0f;
 
+    [SerializeField]
+    ParticleSystem m_LoveParticle;
+
     Merger m_Merger;
 
     public Merger Merger { set { m_Merger = value; } }
@@ -32,6 +35,8 @@ public class AIMove : MonoBehaviour
         m_Agent.isStopped = true;
 
         m_Animator.SetBool("IsStopped", true);
+
+        StartLove();
     }
 
     public void StartMovement(Transform newDestination = null, bool run = false)
@@ -85,6 +90,10 @@ public class AIMove : MonoBehaviour
         m_Merger = null;
 
         SetDestination(destTransform);
+
+        agent.speed = m_BaseSpeed;
+
+        StopLove();
     }
 
     private void SetDestination(Transform transform)
@@ -107,5 +116,15 @@ public class AIMove : MonoBehaviour
         {
             StartMovement();
         }
+    }
+
+    private void StartLove()
+    {
+        m_LoveParticle.Play();
+    }
+
+    private void StopLove()
+    {
+        m_LoveParticle.Stop();
     }
 }
