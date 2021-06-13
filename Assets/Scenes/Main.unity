@@ -3651,6 +3651,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8960545324980207084, guid: addb0b51f7e010948b493e03fa03c3cf, type: 3}
+      propertyPath: m_RendererIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960545324980207084, guid: addb0b51f7e010948b493e03fa03c3cf, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960545324980207091, guid: addb0b51f7e010948b493e03fa03c3cf, type: 3}
+      propertyPath: isGlobal
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: addb0b51f7e010948b493e03fa03c3cf, type: 3}
 --- !u!1001 &556081726628816827
