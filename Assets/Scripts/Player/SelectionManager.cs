@@ -85,25 +85,28 @@ public class SelectionManager : MonoBehaviour
             {
                 commonProps = commonProps.FindAll(delegate(EProp eProp) { return m_SelectedTargets[i].PropsToActivate.Contains(eProp); });
             }
-            if(commonProps.Count == 0)
-            {
-                ScoreManager.Instance.LosePoints();
-                GetComponent<AudioSource>().PlayOneShot(GetRandomLoseSound());
-            }
-            else
+
+            bool isSuccess = commonProps.Count > 0;
+
+            if (isSuccess)
             {
                 ScoreManager.Instance.GainPoints(m_SelectedTargets.Count, commonProps.Count);
                 GetComponent<AudioSource>().PlayOneShot(GetRandomWinSound());
             }
+            else
+            {
+                ScoreManager.Instance.LosePoints();
+                GetComponent<AudioSource>().PlayOneShot(GetRandomLoseSound());
+            }
 
 
-            CreateMerger(m_SelectedTargets);
+            CreateMerger(m_SelectedTargets, isSuccess);
             
             RemoveSelection();
         }
     }
 
-    private void CreateMerger(List<PropsHolder> holders)
+    private void CreateMerger(List<PropsHolder> holders, bool isSuccess)
     {
         GameObject mergerGO = Instantiate(AISpawner.GetInstance().MergerPrefab);
 
@@ -114,7 +117,7 @@ public class SelectionManager : MonoBehaviour
             merger = mergerGO.AddComponent<Merger>();
         }
 
-        merger.StartMerge(holders);
+        merger.StartMerge(holders, isSuccess);
     }
 
     private void RemoveSelection()

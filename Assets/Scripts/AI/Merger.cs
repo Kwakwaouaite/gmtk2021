@@ -15,7 +15,12 @@ public class Merger : MonoBehaviour
     float m_DestroyDelay = 4.0f;
 
     [SerializeField]
-    ParticleSystem m_Smoke;
+    ParticleSystem m_SmokeSuccess;
+
+    [SerializeField]
+    ParticleSystem m_SmokeFailure;
+
+    bool m_IsSuccess = false;
 
     private void InitList(List<PropsHolder> propsHolders)
     {
@@ -30,15 +35,22 @@ public class Merger : MonoBehaviour
 
     private void Awake()
     {
-        if (m_Smoke)
+        if (m_SmokeSuccess)
         {
-            m_Smoke.Stop();
+            m_SmokeSuccess.Stop();
+        }
+
+        if (m_SmokeFailure)
+        {
+            m_SmokeFailure.Stop();
         }
     }
 
 
-    public void StartMerge(List<PropsHolder> propsHolders)
+    public void StartMerge(List<PropsHolder> propsHolders, bool isSuccess)
     {
+        m_IsSuccess = isSuccess;
+
         InitList(propsHolders);
 
         ComputeCenter();
@@ -73,23 +85,13 @@ public class Merger : MonoBehaviour
     {
         m_AIReadyToMerge.Add(ai);
 
-        if (m_SmokeStarted)
+        if (m_AIReadyToMerge.Count > 1)
         {
-            AISpawner.GetInstance().DeactivatePawn(ai);
-        }
-        else
-        {
-            if (m_AIReadyToMerge.Count > 1)
-            {
-                if(m_Smoke)
-                {
-                    m_Smoke.Play();
-                }
+            CreateSmoke(m_IsSuccess);
 
-                foreach (AIMove aiMove in m_AIReadyToMerge)
-                {
-                    AISpawner.GetInstance().DeactivatePawn(aiMove);
-                }
+            foreach (AIMove aiMove in m_AIReadyToMerge)
+            {
+                AISpawner.GetInstance().DeactivatePawn(aiMove);
             }
         }
 
@@ -99,5 +101,23 @@ public class Merger : MonoBehaviour
             Destroy(gameObject, m_DestroyDelay);
         }
 
+    }
+
+    private void CreateSmoke(bool isSuccess)
+    {
+        if (m_IsSuccess)
+        {
+            if (m_SmokeSuccess)
+            {
+                m_SmokeSuccess.Play();
+            }
+        }
+        else
+        {
+            if (m_SmokeFailure)
+            {
+                m_SmokeFailure.Play();
+            }
+        }
     }
 }
